@@ -1,4 +1,5 @@
 ﻿#include "Paciente.h"
+#include <string>
 
 // Constructor
 Paciente::Paciente(int id, std::string nombre) {

@@ -1,4 +1,5 @@
 #include "Medico.h"
+#include <string>
 
 // Constructor
 Medico::Medico(int id, std::string nombre, std::string especialidad) {

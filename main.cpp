@@ -8,7 +8,7 @@ int main() {
     int opcion;
 
     do {
-        cout << "=== Sistema de Gestión Hospitalaria ===" << endl;
+        cout << "=== Sistema de Gestion Hospitalaria ===" << endl;
         cout << "1. Registrar paciente" << endl;
         cout << "2. Registrar médico" << endl;
         cout << "3. Programar cita" << endl;
@@ -18,6 +18,7 @@ int main() {
         cin >> opcion;
 
         switch (opcion) {
+            //Registrar Paciente
         case 1: {
             int id;
             string nombre;
@@ -29,19 +30,21 @@ int main() {
             sistema.registrarPaciente(id, nombre);
             break;
         }
+              //Registrar Medico
         case 2: {
             int id;
             string nombre, especialidad;
-            cout << "Ingrese el ID del médico: ";
+            cout << "Ingrese el ID del medico: ";
             cin >> id;
             cin.ignore();
-            cout << "Ingrese el nombre del médico: ";
+            cout << "Ingrese el nombre del medico: ";
             getline(cin, nombre);
-            cout << "Ingrese la especialidad del médico: ";
+            cout << "Ingrese la especialidad del medico: ";
             getline(cin, especialidad);
             sistema.registrarMedico(id, nombre, especialidad);
             break;
         }
+              //Programar Cita
         case 3: {
             int citaId, pacienteId, medicoId;
             string fecha;
@@ -55,15 +58,17 @@ int main() {
             cin >> urgencia;
             cout << "Ingrese el ID del paciente: ";
             cin >> pacienteId;
-            cout << "Ingrese el ID del médico: ";
+            cout << "Ingrese el ID del medico: ";
             cin >> medicoId;
             sistema.programarCita(citaId, fecha, urgencia, pacienteId, medicoId);
             break;
         }
+            //Mostrar Citas
         case 4:
             sistema.mostrarCitas();
             break;
         case 5:
+            //Salir
             cout << "Saliendo del sistema..." << endl;
             break;
         default:
