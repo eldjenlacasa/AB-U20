@@ -11,3 +11,6 @@ Medico::Medico(int id, std::string nombre, std::string especialidad) {
 std::string Medico::getNombre() {
     return nombre; // Devuelve el nombre del médico
 }
+int Medico::getId() {
+    return id;
+}

@@ -9,8 +9,10 @@ private:
     std::string nombre;      // Nombre del paciente
 
 public:
+    int getId(); // Declaración del método
     Paciente(int id, std::string nombre);
     std::string getNombre(); // Declaración del método getNombre
+
 };
 
 #endif

@@ -10,3 +10,6 @@ Paciente::Paciente(int id, std::string nombre) {
 std::string Paciente::getNombre() {
     return nombre; // Devuelve el nombre del paciente
 }
+int Paciente::getId() {
+    return id;
+}

@@ -10,6 +10,7 @@ private:
     std::string especialidad; // Especialidad del médico
 
 public:
+    int getId(); // Declaración del método
     Medico(int id, std::string nombre, std::string especialidad);
     std::string getNombre(); // Declaración del método getNombre
 };
