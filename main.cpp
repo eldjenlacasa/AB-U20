@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
     // Crear un paciente
-    Paciente paciente1(1, "Juan Perez");
+    Paciente paciente1(1, "Juan Pérez");
 
     // Crear un médico
     Medico medico1(101, "Dra. Smith", "Cardiología");
