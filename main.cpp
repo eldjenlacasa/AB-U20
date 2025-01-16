@@ -10,11 +10,11 @@ int main() {
     do {
         cout << "=== Sistema de Gestion Hospitalaria ===" << endl;
         cout << "1. Registrar paciente" << endl;
-        cout << "2. Registrar médico" << endl;
+        cout << "2. Registrar medico" << endl;
         cout << "3. Programar cita" << endl;
         cout << "4. Mostrar todas las citas" << endl;
         cout << "5. Salir" << endl;
-        cout << "Seleccione una opción: ";
+        cout << "Seleccione una opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -54,7 +54,7 @@ int main() {
             cin.ignore();
             cout << "Ingrese la fecha de la cita (YYYY-MM-DD): ";
             getline(cin, fecha);
-            cout << "¿Es urgente? (1 para Sí, 0 para No): ";
+            cout << "Es urgente? (1 para Si, 0 para No): ";
             cin >> urgencia;
             cout << "Ingrese el ID del paciente: ";
             cin >> pacienteId;
@@ -72,7 +72,7 @@ int main() {
             cout << "Saliendo del sistema..." << endl;
             break;
         default:
-            cout << "Opción no válida. Intente nuevamente." << endl;
+            cout << "Opcion no valida. Intente nuevamente." << endl;
         }
 
         cout << endl;
