@@ -16,9 +16,9 @@ Cita::Cita(int id, std::string fecha, bool urgencia, Paciente* paciente, Medico*
 void Cita::mostrarCita() {
     cout << "ID de la cita: " << id << endl;
     cout << "Fecha: " << fecha << endl;
-    cout << "Urgente: " << (urgencia ? "Sí" : "No") << endl;
+    cout << "Urgente: " << (urgencia ? "Si" : "No") << endl;
     cout << "Paciente: " << paciente->getNombre() << endl;
-    cout << "Médico: " << medico->getNombre() << endl;
+    cout << "Medico: " << medico->getNombre() << endl;
 }
 
 // Método para actualizar la fecha

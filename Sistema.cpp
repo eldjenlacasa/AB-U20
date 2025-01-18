@@ -11,7 +11,7 @@ void Sistema::registrarPaciente(int id, string nombre) {
 
 void Sistema::registrarMedico(int id, string nombre, string especialidad) {
     medicos.emplace_back(id, nombre, especialidad);
-    cout << "Médico registrado: " << nombre << " (" << especialidad << ")" << endl;
+    cout << "Medico registrado: " << nombre << " (" << especialidad << ")" << endl;
 }
 
 void Sistema::programarCita(int citaId, string fecha, bool urgencia, int pacienteId, int medicoId) {
@@ -37,10 +37,10 @@ void Sistema::programarCita(int citaId, string fecha, bool urgencia, int pacient
     if (paciente && medico) {
         citas.emplace_back(citaId, fecha, urgencia, paciente, medico);
         cout << "Cita programada: Paciente " << paciente->getNombre()
-            << " con Médico " << medico->getNombre() << " el " << fecha << endl;
+            << " con Medico " << medico->getNombre() << " el " << fecha << endl;
     }
     else {
-        cout << "Error: Paciente o Médico no encontrado." << endl;
+        cout << "Error: Paciente o Medico no encontrado." << endl;
     }
 }
 
