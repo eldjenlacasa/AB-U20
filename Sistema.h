@@ -18,6 +18,7 @@ public:
     void programarCita(int citaId, std::string fecha, bool urgencia, int pacienteId, int medicoId);
     void mostrarCitas();
     void guardarDatos() const;
+    void backupDatos() const; // Nueva función para realizar el backup
 };
 
 #endif

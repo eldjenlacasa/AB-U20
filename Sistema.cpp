@@ -60,3 +60,28 @@ void Sistema::guardarDatos() const {
     }
     archivoCitas.close();
 }
+
+void Sistema::backupDatos() const {
+    std::ofstream backupFile("backup_datos.txt");
+    if (backupFile.is_open()) {
+        backupFile << "Pacientes:\n";
+        for (const auto& paciente : pacientes) {
+            backupFile << paciente.getId() << ", " << paciente.getNombre() << "\n";
+        }
+
+        backupFile << "\nMedicos:\n";
+        for (const auto& medico : medicos) {
+            backupFile << medico.getId() << ", " << medico.getNombre() << ", " << medico.getEspecialidad() << "\n";
+        }
+
+        backupFile << "\nCitas:\n";
+        for (const auto& cita : citas) {
+            backupFile << cita.getId() << ", " << cita.getFecha() << ", " << cita.isUrgencia() << ", " << cita.getPaciente()->getId() << ", " << cita.getMedico()->getId() << "\n";
+        }
+
+        backupFile.close();
+        std::cout << "Backup realizado con exito." << std::endl;
+    } else {
+        std::cerr << "Error al abrir el archivo de backup." << std::endl;
+    }
+}

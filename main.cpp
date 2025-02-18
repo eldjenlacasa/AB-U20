@@ -15,6 +15,7 @@ int main() {
         cout << "4. Mostrar todas las citas" << endl;
         cout << "5. Guardar datos y salir" << endl;
         cout << "6. Salir sin guardar" << endl;
+        cout << "7. Realizar backup de la base de datos" << endl; // Nueva opción
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -77,6 +78,10 @@ int main() {
         case 6:
             //Salir sin guardar
             cout << "Saliendo del sistema sin guardar..." << endl;
+            break;
+        case 7:
+            //Realizar backup de la base de datos
+            sistema.backupDatos();
             break;
         default:
             cout << "Opcion no valida. Intente nuevamente." << endl;
