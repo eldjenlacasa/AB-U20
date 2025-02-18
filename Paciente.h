@@ -8,16 +8,16 @@ class Paciente {
 private:
     int id;                  // ID del paciente
     std::string nombre;      // Nombre del paciente
-    std::string direccion;        // Dirección de residencia
-    std::string telefono;         // Teléfono de contacto
+    std::string direccion;   // Dirección de residencia
+    std::string telefono;    // Teléfono de contacto
     HistorialClinico historial;   // Historial clínico del paciente
 
 public:
-    int getId(); // Declaración del método
+    int getId() const; // Declaración del método como const
 
     Paciente(int id, std::string nombre);
 
-    std::string getNombre(); // Declaración del método getNombre
+    std::string getNombre() const; // Declaración del método como const
 
     void modificarDatos(std::string campo, std::string valor);
     void agregarHistorialClinico(const std::string& registro); // Cambiado el tipo de parámetro

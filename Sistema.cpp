@@ -1,24 +1,19 @@
 #include "Sistema.h"
-#include <string>
+#include <fstream>
 #include <iostream>
 
-using namespace std;
-
-void Sistema::registrarPaciente(int id, string nombre) {
-    pacientes.emplace_back(id, nombre);
-    cout << "Paciente registrado: " << nombre << endl;
+void Sistema::registrarPaciente(int id, std::string nombre) {
+    pacientes.push_back(Paciente(id, nombre));
 }
 
-void Sistema::registrarMedico(int id, string nombre, string especialidad) {
-    medicos.emplace_back(id, nombre, especialidad);
-    cout << "Medico registrado: " << nombre << " (" << especialidad << ")" << endl;
+void Sistema::registrarMedico(int id, std::string nombre, std::string especialidad) {
+    medicos.push_back(Medico(id, nombre, especialidad));
 }
 
-void Sistema::programarCita(int citaId, string fecha, bool urgencia, int pacienteId, int medicoId) {
+void Sistema::programarCita(int citaId, std::string fecha, bool urgencia, int pacienteId, int medicoId) {
     Paciente* paciente = nullptr;
     Medico* medico = nullptr;
 
-    // Buscar el paciente por ID
     for (auto& p : pacientes) {
         if (p.getId() == pacienteId) {
             paciente = &p;
@@ -26,7 +21,6 @@ void Sistema::programarCita(int citaId, string fecha, bool urgencia, int pacient
         }
     }
 
-    // Buscar el médico por ID
     for (auto& m : medicos) {
         if (m.getId() == medicoId) {
             medico = &m;
@@ -35,18 +29,34 @@ void Sistema::programarCita(int citaId, string fecha, bool urgencia, int pacient
     }
 
     if (paciente && medico) {
-        citas.emplace_back(citaId, fecha, urgencia, paciente, medico);
-        cout << "Cita programada: Paciente " << paciente->getNombre()
-            << " con Medico " << medico->getNombre() << " el " << fecha << endl;
-    }
-    else {
-        cout << "Error: Paciente o Medico no encontrado." << endl;
+        citas.push_back(Cita(citaId, fecha, urgencia, paciente, medico));
+    } else {
+        std::cerr << "Paciente o Medico no encontrado." << std::endl;
     }
 }
 
 void Sistema::mostrarCitas() {
-    cout << "=== Lista de Citas ===" << endl;
-    for (auto& cita : citas) {
+    for (const auto& cita : citas) {
         cita.mostrarCita();
     }
+}
+
+void Sistema::guardarDatos() const {
+    std::ofstream archivoPacientes("pacientes.txt");
+    for (const auto& paciente : pacientes) {
+        archivoPacientes << paciente.getId() << "," << paciente.getNombre() << std::endl;
+    }
+    archivoPacientes.close();
+
+    std::ofstream archivoMedicos("medicos.txt");
+    for (const auto& medico : medicos) {
+        archivoMedicos << medico.getId() << "," << medico.getNombre() << "," << medico.getEspecialidad() << std::endl;
+    }
+    archivoMedicos.close();
+
+    std::ofstream archivoCitas("citas.txt");
+    for (const auto& cita : citas) {
+        archivoCitas << cita.getId() << "," << cita.getFecha() << "," << cita.isUrgencia() << "," << cita.getPaciente()->getId() << "," << cita.getMedico()->getId() << std::endl;
+    }
+    archivoCitas.close();
 }

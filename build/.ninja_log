@@ -1,0 +1,7 @@
+# ninja log v6
+68	897	7589351080485805	CMakeFiles/CMakeTarget.dir/Medico.cpp.obj	da4237e03233e561
+94	1372	7589351080769778	CMakeFiles/CMakeTarget.dir/HistorialClinico.cpp.obj	ad50e89ea628b103
+60	1420	7589351080421554	CMakeFiles/CMakeTarget.dir/Paciente.cpp.obj	d0db5015b5307695
+87	1442	7589351080685526	CMakeFiles/CMakeTarget.dir/Sistema.cpp.obj	840c1c70d40b7b5c
+74	1447	7589351080545865	CMakeFiles/CMakeTarget.dir/Cita.cpp.obj	b4667ef6c51cb921
+80	1477	7589351080608764	CMakeFiles/CMakeTarget.dir/main.cpp.obj	1ef236c88872e1b5

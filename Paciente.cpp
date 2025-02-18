@@ -1,5 +1,4 @@
-﻿// Paciente.cpp
-#include "Paciente.h"
+﻿#include "Paciente.h"
 #include <string>
 #include <stdexcept>
 
@@ -10,11 +9,11 @@ Paciente::Paciente(int id, std::string nombre) {
 }
 
 // Implementación de getNombre
-std::string Paciente::getNombre() {
+std::string Paciente::getNombre() const { // Declaración del método como const
     return nombre; // Devuelve el nombre del paciente
 }
 
-int Paciente::getId() {
+int Paciente::getId() const { // Declaración del método como const
     return id;
 }
 

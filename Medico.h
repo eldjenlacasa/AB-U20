@@ -10,9 +10,10 @@ private:
     std::string especialidad; // Especialidad del médico
 
 public:
-    int getId(); // Declaración del método
+    int getId() const; // Declaración del método como const
     Medico(int id, std::string nombre, std::string especialidad);
-    std::string getNombre(); // Declaración del método getNombre
+    std::string getNombre() const; // Declaración del método como const
+    std::string getEspecialidad() const; // Declaración del método como const
 };
 
 #endif

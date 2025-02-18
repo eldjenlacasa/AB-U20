@@ -13,7 +13,8 @@ int main() {
         cout << "2. Registrar medico" << endl;
         cout << "3. Programar cita" << endl;
         cout << "4. Mostrar todas las citas" << endl;
-        cout << "5. Salir" << endl;
+        cout << "5. Guardar datos y salir" << endl;
+        cout << "6. Salir sin guardar" << endl;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -68,15 +69,21 @@ int main() {
             sistema.mostrarCitas();
             break;
         case 5:
-            //Salir
-            cout << "Saliendo del sistema..." << endl;
+            //Guardar datos y salir
+            sistema.guardarDatos();
+            cout << "Datos guardados. Saliendo del sistema..." << endl;
+            opcion = 6; // Para salir del bucle
+            break;
+        case 6:
+            //Salir sin guardar
+            cout << "Saliendo del sistema sin guardar..." << endl;
             break;
         default:
             cout << "Opcion no valida. Intente nuevamente." << endl;
         }
 
         cout << endl;
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return 0;
 }

@@ -17,8 +17,14 @@ public:
     // Constructor
     Cita(int id, std::string fecha, bool urgencia, Paciente* paciente, Medico* medico);
 
+    int getId() const;
+    std::string getFecha() const;
+    bool isUrgencia() const;
+    Paciente* getPaciente() const;
+    Medico* getMedico() const;
+
     // Métodos
-    void mostrarCita();
+    void mostrarCita() const; // Declarar como const
     void actualizarFecha(std::string nuevaFecha);
     void cancelarCita();
 };

@@ -17,7 +17,7 @@ public:
     void registrarMedico(int id, std::string nombre, std::string especialidad);
     void programarCita(int citaId, std::string fecha, bool urgencia, int pacienteId, int medicoId);
     void mostrarCitas();
+    void guardarDatos() const;
 };
 
 #endif
-
