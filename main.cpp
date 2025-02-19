@@ -1,29 +1,19 @@
-#include <iostream>
+﻿#include <iostream>
 #include "Sistema.h"
 
 using namespace std;
 
-int main() {
-    Sistema sistema;
-    sistema.cargarDatos(); // Cargar datos al iniciar el sistema
+void menuGestionPacientes(Sistema& sistema) {
     int opcion;
-
     do {
-        cout << "=== Sistema de Gestion Hospitalaria ===" << endl;
-        cout << "1. Registrar paciente" << endl;
-        cout << "2. Dar de baja paciente" << endl;
-        cout << "3. Registrar medico" << endl;
-        cout << "4. Dar de baja medico" << endl;
-        cout << "5. Programar cita" << endl;
-        cout << "6. Mostrar todas las citas" << endl;
-        cout << "7. Guardar datos" << endl;
-        cout << "8. Salir" << endl;
-        cout << "9. Realizar backup" << endl;
-        cout << "Seleccione una opcion: ";
+        cout << "\n==== Gestión de Pacientes ====\n"
+            << "1. Registrar paciente\n"
+            << "2. Dar de baja paciente\n"
+            << "0. Volver al menú principal\n"
+            << "Seleccione una opción: ";
         cin >> opcion;
 
         switch (opcion) {
-            //Registrar Paciente
         case 1: {
             int id;
             string nombre;
@@ -35,7 +25,6 @@ int main() {
             sistema.registrarPaciente(id, nombre);
             break;
         }
-            //Dar de baja Paciente
         case 2: {
             int id;
             cout << "Ingrese el ID del paciente a dar de baja: ";
@@ -43,30 +32,65 @@ int main() {
             sistema.darDeBajaPaciente(id);
             break;
         }
-            //Registrar Medico
-        case 3: {
+        case 0:
+            return;
+        default:
+            cout << "Opción no válida. Intente nuevamente." << endl;
+        }
+    } while (opcion != 0);
+}
+
+void menuGestionMedicos(Sistema& sistema) {
+    int opcion;
+    do {
+        cout << "\n==== Gestión de Médicos ====\n"
+            << "1. Registrar médico\n"
+            << "2. Dar de baja médico\n"
+            << "0. Volver al menú principal\n"
+            << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1: {
             int id;
             string nombre, especialidad;
-            cout << "Ingrese el ID del medico: ";
+            cout << "Ingrese el ID del médico: ";
             cin >> id;
             cin.ignore();
-            cout << "Ingrese el nombre del medico: ";
+            cout << "Ingrese el nombre del médico: ";
             getline(cin, nombre);
-            cout << "Ingrese la especialidad del medico: ";
+            cout << "Ingrese la especialidad del médico: ";
             getline(cin, especialidad);
             sistema.registrarMedico(id, nombre, especialidad);
             break;
         }
-            //Dar de baja Medico
-        case 4: {
+        case 2: {
             int id;
-            cout << "Ingrese el ID del medico a dar de baja: ";
+            cout << "Ingrese el ID del médico a dar de baja: ";
             cin >> id;
             sistema.darDeBajaMedico(id);
             break;
         }
-            //Programar Cita
-        case 5: {
+        case 0:
+            return;
+        default:
+            cout << "Opción no válida. Intente nuevamente." << endl;
+        }
+    } while (opcion != 0);
+}
+
+void menuGestionCitas(Sistema& sistema) {
+    int opcion;
+    do {
+        cout << "\n==== Gestión de Citas ====\n"
+            << "1. Programar cita\n"
+            << "2. Mostrar todas las citas\n"
+            << "0. Volver al menú principal\n"
+            << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1: {
             int citaId, pacienteId, medicoId;
             string fecha;
             bool urgencia;
@@ -75,38 +99,91 @@ int main() {
             cin.ignore();
             cout << "Ingrese la fecha de la cita (YYYY-MM-DD): ";
             getline(cin, fecha);
-            cout << "Es urgente? (1 para Si, 0 para No): ";
+            cout << "Es urgente? (1 para Sí, 0 para No): ";
             cin >> urgencia;
             cout << "Ingrese el ID del paciente: ";
             cin >> pacienteId;
-            cout << "Ingrese el ID del medico: ";
+            cout << "Ingrese el ID del médico: ";
             cin >> medicoId;
             sistema.programarCita(citaId, fecha, urgencia, pacienteId, medicoId);
             break;
         }
-            //Mostrar Citas
-        case 6:
+        case 2:
             sistema.mostrarCitas();
             break;
-        case 7:
-            //Guardar datos
+        case 0:
+            return;
+        default:
+            cout << "Opción no válida. Intente nuevamente." << endl;
+        }
+    } while (opcion != 0);
+}
+
+void menuManejoArchivos(Sistema& sistema) {
+    int opcion;
+    do {
+        cout << "\n==== Manejo de Archivos ====\n"
+            << "1. Guardar datos\n"
+            << "2. Realizar backup\n"
+            << "0. Volver al menú principal\n"
+            << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
             sistema.guardarDatos();
             cout << "Datos guardados." << endl;
             break;
-        case 8:
-            //Salir
-            cout << "Saliendo del sistema..." << endl;
-            break;
-        case 9:
-            //Realizar backup
+        case 2:
             sistema.backupDatos();
             break;
+        case 0:
+            return;
         default:
-            cout << "Opcion no valida. Intente nuevamente." << endl;
+            cout << "Opción no válida. Intente nuevamente." << endl;
         }
+    } while (opcion != 0);
+}
 
-        cout << endl;
-    } while (opcion != 8);
+void menuPrincipal(Sistema& sistema) {
+    int opcion;
+    do {
+        cout << "\n==== Menú Principal ====\n"
+            << "1. Gestión de Pacientes\n"
+            << "2. Gestión de Médicos\n"
+            << "3. Gestión de Citas\n"
+            << "4. Manejo de Archivos\n"
+            << "0. Salir\n"
+            << "Seleccione una opción: ";
+        cin >> opcion;
 
+        switch (opcion) {
+        case 1:
+            menuGestionPacientes(sistema);
+            break;
+        case 2:
+            menuGestionMedicos(sistema);
+            break;
+        case 3:
+            menuGestionCitas(sistema);
+            break;
+        case 4:
+            menuManejoArchivos(sistema);
+            break;
+        case 0:
+            cout << "Saliendo del sistema..." << endl;
+            break;
+        default:
+            cout << "Opción no válida. Intente nuevamente." << endl;
+        }
+    } while (opcion != 0);
+}
+
+int main() {
+    setlocale(LC_ALL, "");
+
+    Sistema sistema;
+    sistema.cargarDatos(); // Cargar datos al iniciar el sistema
+    menuPrincipal(sistema);
     return 0;
 }
