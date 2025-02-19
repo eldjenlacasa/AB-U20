@@ -1,13 +1,40 @@
 #include "Sistema.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 void Sistema::registrarPaciente(int id, std::string nombre) {
     pacientes.push_back(Paciente(id, nombre));
 }
 
+void Sistema::darDeBajaPaciente(int id) {
+    auto it = std::remove_if(pacientes.begin(), pacientes.end(), [id](const Paciente& p) {
+        return p.getId() == id;
+        });
+    if (it != pacientes.end()) {
+        pacientes.erase(it, pacientes.end());
+        std::cout << "Paciente con ID " << id << " dado de baja." << std::endl;
+    }
+    else {
+        std::cout << "Paciente con ID " << id << " no encontrado." << std::endl;
+    }
+}
+
 void Sistema::registrarMedico(int id, std::string nombre, std::string especialidad) {
     medicos.push_back(Medico(id, nombre, especialidad));
+}
+
+void Sistema::darDeBajaMedico(int id) {
+    auto it = std::remove_if(medicos.begin(), medicos.end(), [id](const Medico& m) {
+        return m.getId() == id;
+        });
+    if (it != medicos.end()) {
+        medicos.erase(it, medicos.end());
+        std::cout << "Medico con ID " << id << " dado de baja." << std::endl;
+    }
+    else {
+        std::cout << "Medico con ID " << id << " no encontrado." << std::endl;
+    }
 }
 
 void Sistema::programarCita(int citaId, std::string fecha, bool urgencia, int pacienteId, int medicoId) {
@@ -30,8 +57,6 @@ void Sistema::programarCita(int citaId, std::string fecha, bool urgencia, int pa
 
     if (paciente && medico) {
         citas.push_back(Cita(citaId, fecha, urgencia, paciente, medico));
-    } else {
-        std::cerr << "Paciente o Medico no encontrado." << std::endl;
     }
 }
 
@@ -81,7 +106,67 @@ void Sistema::backupDatos() const {
 
         backupFile.close();
         std::cout << "Backup realizado con exito." << std::endl;
-    } else {
+    }
+    else {
         std::cerr << "Error al abrir el archivo de backup." << std::endl;
+    }
+}
+
+void Sistema::cargarDatos() {
+    std::ifstream archivoPacientes("pacientes.txt");
+    std::ifstream archivoMedicos("medicos.txt");
+    std::ifstream archivoCitas("citas.txt");
+
+    if (!archivoPacientes.is_open()) {
+        std::cerr << "Error al abrir el archivo de pacientes." << std::endl;
+    }
+    else {
+        std::string linea;
+        while (std::getline(archivoPacientes, linea)) {
+            std::stringstream ss(linea);
+            int id;
+            std::string nombre;
+            ss >> id;
+            ss.ignore();
+            std::getline(ss, nombre);
+            registrarPaciente(id, nombre);
+        }
+        archivoPacientes.close();
+    }
+
+    if (!archivoMedicos.is_open()) {
+        std::cerr << "Error al abrir el archivo de medicos." << std::endl;
+    }
+    else {
+        std::string linea;
+        while (std::getline(archivoMedicos, linea)) {
+            std::stringstream ss(linea);
+            int id;
+            std::string nombre, especialidad;
+            ss >> id;
+            ss.ignore();
+            std::getline(ss, nombre, ',');
+            std::getline(ss, especialidad);
+            registrarMedico(id, nombre, especialidad);
+        }
+        archivoMedicos.close();
+    }
+
+    if (!archivoCitas.is_open()) {
+        std::cerr << "Error al abrir el archivo de citas." << std::endl;
+    }
+    else {
+        std::string linea;
+        while (std::getline(archivoCitas, linea)) {
+            std::stringstream ss(linea);
+            int citaId, pacienteId, medicoId;
+            std::string fecha;
+            bool urgencia;
+            ss >> citaId >> pacienteId >> medicoId >> urgencia;
+            ss.ignore();
+            std::getline(ss, fecha);
+            programarCita(citaId, fecha, urgencia, pacienteId, medicoId);
+        }
+        archivoCitas.close();
     }
 }

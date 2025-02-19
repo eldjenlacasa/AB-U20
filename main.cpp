@@ -5,17 +5,20 @@ using namespace std;
 
 int main() {
     Sistema sistema;
+    sistema.cargarDatos(); // Cargar datos al iniciar el sistema
     int opcion;
 
     do {
         cout << "=== Sistema de Gestion Hospitalaria ===" << endl;
         cout << "1. Registrar paciente" << endl;
-        cout << "2. Registrar medico" << endl;
-        cout << "3. Programar cita" << endl;
-        cout << "4. Mostrar todas las citas" << endl;
-        cout << "5. Guardar datos y salir" << endl;
-        cout << "6. Salir sin guardar" << endl;
-        cout << "7. Realizar backup de la base de datos" << endl; // Nueva opción
+        cout << "2. Dar de baja paciente" << endl;
+        cout << "3. Registrar medico" << endl;
+        cout << "4. Dar de baja medico" << endl;
+        cout << "5. Programar cita" << endl;
+        cout << "6. Mostrar todas las citas" << endl;
+        cout << "7. Guardar datos" << endl;
+        cout << "8. Salir" << endl;
+        cout << "9. Realizar backup" << endl;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
@@ -32,8 +35,16 @@ int main() {
             sistema.registrarPaciente(id, nombre);
             break;
         }
-              //Registrar Medico
+            //Dar de baja Paciente
         case 2: {
+            int id;
+            cout << "Ingrese el ID del paciente a dar de baja: ";
+            cin >> id;
+            sistema.darDeBajaPaciente(id);
+            break;
+        }
+            //Registrar Medico
+        case 3: {
             int id;
             string nombre, especialidad;
             cout << "Ingrese el ID del medico: ";
@@ -46,8 +57,16 @@ int main() {
             sistema.registrarMedico(id, nombre, especialidad);
             break;
         }
-              //Programar Cita
-        case 3: {
+            //Dar de baja Medico
+        case 4: {
+            int id;
+            cout << "Ingrese el ID del medico a dar de baja: ";
+            cin >> id;
+            sistema.darDeBajaMedico(id);
+            break;
+        }
+            //Programar Cita
+        case 5: {
             int citaId, pacienteId, medicoId;
             string fecha;
             bool urgencia;
@@ -66,21 +85,20 @@ int main() {
             break;
         }
             //Mostrar Citas
-        case 4:
+        case 6:
             sistema.mostrarCitas();
             break;
-        case 5:
-            //Guardar datos y salir
-            sistema.guardarDatos();
-            cout << "Datos guardados. Saliendo del sistema..." << endl;
-            opcion = 6; // Para salir del bucle
-            break;
-        case 6:
-            //Salir sin guardar
-            cout << "Saliendo del sistema sin guardar..." << endl;
-            break;
         case 7:
-            //Realizar backup de la base de datos
+            //Guardar datos
+            sistema.guardarDatos();
+            cout << "Datos guardados." << endl;
+            break;
+        case 8:
+            //Salir
+            cout << "Saliendo del sistema..." << endl;
+            break;
+        case 9:
+            //Realizar backup
             sistema.backupDatos();
             break;
         default:
@@ -88,7 +106,7 @@ int main() {
         }
 
         cout << endl;
-    } while (opcion != 6);
+    } while (opcion != 8);
 
     return 0;
 }
