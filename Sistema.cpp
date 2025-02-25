@@ -12,6 +12,7 @@
 void Sistema::registrarPaciente(std::string nombre) {
     Paciente nuevoPaciente(nombre);
     pacientes.push_back(nuevoPaciente);
+    std::cout << "Nuevo ID de paciente asignado: " << nuevoPaciente.getId() << std::endl;
 }
 
 void Sistema::darDeBajaPaciente(int id) {
@@ -30,6 +31,7 @@ void Sistema::darDeBajaPaciente(int id) {
 void Sistema::registrarMedico(std::string nombre, std::string especialidad) {
     Medico nuevoMedico(nombre, especialidad);
     medicos.push_back(nuevoMedico);
+    std::cout << "Nuevo ID de médico asignado: " << nuevoMedico.getId() << std::endl;
 }
 
 void Sistema::darDeBajaMedico(int id) {
