@@ -1,10 +1,17 @@
 #include "Sistema.h"
+#include "Paciente.h"
+#include "Medico.h"
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
-void Sistema::registrarPaciente(int id, std::string nombre) {
-    pacientes.push_back(Paciente(id, nombre));
+
+
+void Sistema::registrarPaciente(std::string nombre) {
+    Paciente nuevoPaciente(nombre);
+    pacientes.push_back(nuevoPaciente);
 }
 
 void Sistema::darDeBajaPaciente(int id) {
@@ -20,8 +27,9 @@ void Sistema::darDeBajaPaciente(int id) {
     }
 }
 
-void Sistema::registrarMedico(int id, std::string nombre, std::string especialidad) {
-    medicos.push_back(Medico(id, nombre, especialidad));
+void Sistema::registrarMedico(std::string nombre, std::string especialidad) {
+    Medico nuevoMedico(nombre, especialidad);
+    medicos.push_back(nuevoMedico);
 }
 
 void Sistema::darDeBajaMedico(int id) {
@@ -129,7 +137,7 @@ void Sistema::cargarDatos() {
             ss >> id;
             ss.ignore();
             std::getline(ss, nombre);
-            registrarPaciente(id, nombre);
+            pacientes.push_back(Paciente(id, nombre));
         }
         archivoPacientes.close();
     }
@@ -147,7 +155,7 @@ void Sistema::cargarDatos() {
             ss.ignore();
             std::getline(ss, nombre, ',');
             std::getline(ss, especialidad);
-            registrarMedico(id, nombre, especialidad);
+            medicos.push_back(Medico(id, nombre, especialidad));
         }
         archivoMedicos.close();
     }

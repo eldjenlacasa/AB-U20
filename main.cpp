@@ -15,14 +15,11 @@ void menuGestionPacientes(Sistema& sistema) {
 
         switch (opcion) {
         case 1: {
-            int id;
             string nombre;
-            cout << "Ingrese el ID del paciente: ";
-            cin >> id;
-            cin.ignore();
             cout << "Ingrese el nombre del paciente: ";
+            cin.ignore();
             getline(cin, nombre);
-            sistema.registrarPaciente(id, nombre);
+            sistema.registrarPaciente(nombre);
             break;
         }
         case 2: {
@@ -52,16 +49,13 @@ void menuGestionMedicos(Sistema& sistema) {
 
         switch (opcion) {
         case 1: {
-            int id;
             string nombre, especialidad;
-            cout << "Ingrese el ID del médico: ";
-            cin >> id;
-            cin.ignore();
             cout << "Ingrese el nombre del médico: ";
+            cin.ignore();
             getline(cin, nombre);
             cout << "Ingrese la especialidad del médico: ";
             getline(cin, especialidad);
-            sistema.registrarMedico(id, nombre, especialidad);
+            sistema.registrarMedico(nombre, especialidad);
             break;
         }
         case 2: {
